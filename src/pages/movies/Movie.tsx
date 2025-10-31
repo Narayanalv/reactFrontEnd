@@ -14,6 +14,9 @@ import type {
     ColumnFiltersState,
 } from "@tanstack/react-table";
 import API_BASE_URL from "@/config";
+import { ROUTES } from "@/constants/const";
+import { useNavigate } from "react-router-dom"
+
 
 type Movie = {
     id: number;
@@ -55,6 +58,8 @@ const Movie: React.FC = () => {
     const [isEditMode, setIsEditMode] = useState(false);
     const [movieToDelete, setMovieToDelete] = useState<number | null>(null);
     const [movieToView, setMovieToView] = useState<Movie | null>(null);
+    const navigate = useNavigate();
+
 
     const showToast = (message: string, type: 'success' | 'error') => {
         setToast({ message, type });
@@ -171,7 +176,7 @@ const Movie: React.FC = () => {
 
         try {
             const response = await fetch(`${API_BASE_URL}/updateFav`, {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 },
@@ -186,9 +191,13 @@ const Movie: React.FC = () => {
                 setShowAddEditModal(false);
                 resetForm();
                 setImageFile(null);
+            } else if ((await response.status) === 401) {
+                navigate(ROUTES.HOME);
+                return;
             } else {
                 showToast(result.message || "Failed to update movie", "error");
             }
+
         } catch (error) {
             console.error("Error updating movie:", error);
             showToast("Error updating movie", "error");
@@ -210,9 +219,13 @@ const Movie: React.FC = () => {
                     setData((prev) => prev.filter((m) => m.id !== movieToDelete));
                     setShowDeleteModal(false);
                     setMovieToDelete(null);
+                } else if ((await response.status) === 401) {
+                    navigate(ROUTES.HOME);
+                    return
                 } else {
                     alert("Failed to delete movie");
                 }
+
             } catch (error) {
                 console.error("Error deleting movie:", error);
                 alert("Error deleting movie");
@@ -225,6 +238,10 @@ const Movie: React.FC = () => {
             const response = await fetch(`${API_BASE_URL}/getAll`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
             });
+            if ((await response.status) === 401) {
+                navigate(ROUTES.HOME);
+                return
+            }
             const movies = await response.json();
             setData(movies.data);
         };
@@ -258,7 +275,7 @@ const Movie: React.FC = () => {
             accessorKey: "image",
             header: "Image",
             cell: (info) => (
-                <img src={info.getValue<string>()} alt="poster" className="w-12 h-12 object-cover rounded" />
+                <img src={`https://res.cloudinary.com/dvniqmmy3/image/upload/v1761885887/${info.getValue<string>()}`} alt="poster" className="w-12 h-12 object-cover rounded" />
             ),
         },
         {
@@ -315,8 +332,8 @@ const Movie: React.FC = () => {
             {toast && (
                 <div
                     className={`absolute top-4 right-4 z-[60] flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg border min-w-[300px] transition-all duration-300 ${toast.type === 'success'
-                            ? 'bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800 text-green-800 dark:text-green-200'
-                            : 'bg-red-50 dark:bg-red-950 border-red-200 dark:border-red-800 text-red-800 dark:text-red-200'
+                        ? 'bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800 text-green-800 dark:text-green-200'
+                        : 'bg-red-50 dark:bg-red-950 border-red-200 dark:border-red-800 text-red-800 dark:text-red-200'
                         }`}
                     style={{
                         animation: 'slideIn 0.3s ease-out'
@@ -568,7 +585,7 @@ const Movie: React.FC = () => {
                         <div className="space-y-4">
                             <div className="flex justify-center mb-4">
                                 <img
-                                    src={movieToView.image}
+                                    src={`https://res.cloudinary.com/dvniqmmy3/image/upload/v1761885887/${movieToView.image}`}
                                     alt={movieToView.title}
                                     className="w-48 h-64 object-cover rounded border shadow-lg"
                                 />
