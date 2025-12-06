@@ -7,4 +7,3 @@ dist-ssr
 *.local
 *.sw?
 Dockerfile
-nginx.conf
