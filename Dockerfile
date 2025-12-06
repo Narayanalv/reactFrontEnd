@@ -4,7 +4,7 @@ RUN npm install -g pnpm
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 COPY . .
-ARG VITE_API_BASE_URL
+ARG VITE_API_BASE_URL=https://expressbackend-ohtv.onrender.com/api
 ENV VITE_API_BASE_URL=${VITE_API_BASE_URL}
 RUN pnpm run build
 
