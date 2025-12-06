@@ -61,7 +61,7 @@ function Register() {
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
             >
-                {({ values, isValid, dirty, errors, touched, handleChange, handleBlur, handleSubmit }) => (
+                {({ values, isValid, dirty, errors, touched, handleChange, handleBlur }) => (
                     <Form>
                         <FieldGroup>
                             <Field>

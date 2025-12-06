@@ -1,6 +1,3 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import { useTheme } from './components/theme-provider'
 import { Routes, Route } from 'react-router-dom'
@@ -9,7 +6,7 @@ import { Button } from './components/ui/button'
 import { Moon, Sun } from "lucide-react"
 import Register from './pages/register/Register'
 import { ROUTES } from './constants/const'
-import Movies from './pages/movies/movie'
+import Movies from './pages/movies/Movie'
 
 function App() {
   const { theme, setTheme } = useTheme()

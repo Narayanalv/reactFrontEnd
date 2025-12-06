@@ -1,0 +1,10 @@
+node_modules
+dist
+dist-ssr
+.git
+.vscode
+*.log
+*.local
+*.sw?
+Dockerfile
+nginx.conf
