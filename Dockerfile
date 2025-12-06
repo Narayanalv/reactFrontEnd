@@ -1,11 +1,12 @@
 FROM node:20-alpine AS build
 WORKDIR /app
-COPY package.json package-lock.json* pnpm-lock.yaml* yarn.lock* ./
-RUN npm ci --no-audit --no-fund
+RUN npm install -g pnpm
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 COPY . .
 ARG VITE_API_BASE_URL
 ENV VITE_API_BASE_URL=${VITE_API_BASE_URL}
-RUN npm run build
+RUN pnpm run build
 
 FROM nginx:1.27-alpine
 WORKDIR /usr/share/nginx/html
