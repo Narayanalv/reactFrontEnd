@@ -50,8 +50,8 @@ function LoginForm() {
     }
 
     return (
-        <div className="w-[70vh] border rounded-lg p-[5rem] shadow-[0_0_20px_20px_#aca7a7]">
-            <h2 className="text-xl font-semibold mb-4 text-center">Login to your account</h2>
+        <div className="w-full max-w-md md:max-w-lg lg:max-w-2xl border rounded-lg p-6 md:p-8 lg:p-20 shadow-[0_0_20px_20px_#aca7a7]">
+            <h2 className="text-lg md:text-xl lg:text-2xl font-semibold mb-4 text-center">Login to your account</h2>
             <Formik
                 initialValues={{ email: "", password: "", remember: "" }}
                 validationSchema={validationSchema}
@@ -130,7 +130,7 @@ function LoginForm() {
                         </FieldGroup>
                         <FieldGroup>
                             <Field>
-                                <div className="flex items-center mb-6 ml-40">
+                                <div className="flex items-center mb-6 md:ml-20 lg:ml-40">
                                     <FormikField
                                         type="checkbox"
                                         id="remember"
@@ -158,13 +158,13 @@ function LoginForm() {
                                     {formError || (Object.values(errors)[0] as string)}
                                 </div>
                             )}
-                        <div className="mt-6 flex justify-center gap-4">
+                        <div className="mt-6 flex flex-col sm:flex-row justify-center gap-4">
                             <Button
                                 size="sm"
                                 variant="outline"
                                 type="submit"
                                 disabled={!isValid || !dirty || loading}
-                                className="flex items-center gap-2"
+                                className="flex items-center gap-2 w-full sm:w-auto"
                             >
                                 {loading ? <Spinner /> : "Login"}
                             </Button>
@@ -172,7 +172,7 @@ function LoginForm() {
                                 size="sm"
                                 variant="outline"
                                 type="button"
-                                className="flex items-center gap-2"
+                                className="flex items-center gap-2 w-full sm:w-auto"
                                 onClick={()=>{navigate(ROUTES.REGISTER)}}
                             >
                                 Register

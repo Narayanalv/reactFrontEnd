@@ -54,8 +54,8 @@ function Register() {
     }
 
     return (
-        <div className="w-[70vh] border-[0.1rem] rounded-[0.5rem] p-[5rem] shadow-[0_0_20px_20px_#aca7a7]">
-            <h2 className="text-xl font-semibold mb-4 text-center">Login to your account</h2>
+        <div className="w-full max-w-md md:max-w-lg lg:max-w-2xl border-[0.1rem] rounded-[0.5rem] p-6 md:p-8 lg:p-20 shadow-[0_0_20px_20px_#aca7a7]">
+            <h2 className="text-lg md:text-xl lg:text-2xl font-semibold mb-4 text-center">Create your account</h2>
             <Formik
                 initialValues={{ name: "", email: "", password: "", confirmPassword: "" }}
                 validationSchema={validationSchema}
@@ -197,12 +197,12 @@ function Register() {
                                         : Object.values(errors)[0] as string}
                                 </div>
                             )}
-                        <div className="mt-6 flex justify-center gap-4">
+                        <div className="mt-6 flex flex-col sm:flex-row justify-center gap-4">
                             <Button
                                 size="sm"
                                 variant="outline"
                                 type="button"
-                                className="flex items-center gap-2"
+                                className="flex items-center gap-2 w-full sm:w-auto"
                                 onClick={() => { navigate(ROUTES.HOME) }}
                             >
                                 Login
@@ -212,7 +212,7 @@ function Register() {
                                 variant="outline"
                                 type="submit"
                                 disabled={!isValid || !dirty || loading}
-                                className="flex items-center gap-2"
+                                className="flex items-center gap-2 w-full sm:w-auto"
                             >
                                 {loading ? <Spinner /> : "Register"}
                             </Button>

@@ -367,28 +367,28 @@ const Movie: React.FC = () => {
                 }
             `}</style>
 
-            <div className="flex justify-between items-center mb-4">
-                <h1 className="text-xl font-bold">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+                <h1 className="text-lg sm:text-xl font-bold">
                     🎬 Movie Table
                 </h1>
                 <button
                     onClick={openAddModal}
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md"
+                    className="bg-primary text-primary-foreground hover:bg-primary/90 px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base w-full sm:w-auto"
                 >
                     Add Movie
                 </button>
             </div>
 
             {/* Table Display */}
-            <div className="rounded-md border">
-                <table className="min-w-full">
+            <div className="rounded-md border overflow-x-auto">
+                <table className="w-full min-w-[500px] text-sm sm:text-base">
                     <thead>
                         {table.getHeaderGroups().map((headerGroup) => (
                             <tr key={headerGroup.id} className="border-b">
                                 {headerGroup.headers.map((header) => (
                                     <th
                                         key={header.id}
-                                        className="px-4 py-3 text-left font-medium bg-muted/50"
+                                        className="px-3 sm:px-4 py-2 sm:py-3 text-left text-xs sm:text-sm font-medium bg-muted/50 whitespace-nowrap"
                                     >
                                         {flexRender(
                                             header.column.columnDef.header,
@@ -404,7 +404,7 @@ const Movie: React.FC = () => {
                             table.getRowModel().rows.map((row) => (
                                 <tr key={row.id} className="border-b hover:bg-muted/50">
                                     {row.getVisibleCells().map((cell) => (
-                                        <td key={cell.id} className="px-4 py-3">
+                                        <td key={cell.id} className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm">
                                             {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                         </td>
                                     ))}
@@ -426,12 +426,12 @@ const Movie: React.FC = () => {
 
             {/* Add/Edit Modal */}
             {showAddEditModal && (
-                <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50">
-                    <div className="bg-card border rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-lg">
-                        <h2 className="text-xl font-bold mb-4">
+                <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                    <div className="bg-card border rounded-lg p-4 sm:p-6 w-full max-w-xl sm:max-w-2xl max-h-[90vh] overflow-y-auto shadow-lg">
+                        <h2 className="text-lg sm:text-xl font-bold mb-4">
                             {isEditMode ? "Edit Movie" : "Add New Movie"}
                         </h2>
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium mb-1">Title</label>
                                 <input
@@ -529,19 +529,19 @@ const Movie: React.FC = () => {
                                 )}
                             </div>
                         </div>
-                        <div className="flex justify-end gap-2 mt-6">
+                        <div className="flex flex-col sm:flex-row justify-end gap-2 mt-6">
                             <button
                                 onClick={() => {
                                     setShowAddEditModal(false);
                                     resetForm();
                                 }}
-                                className="border border-input bg-background hover:bg-accent hover:text-accent-foreground px-4 py-2 rounded-md"
+                                className="border border-input bg-background hover:bg-accent hover:text-accent-foreground px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base order-2 sm:order-1"
                             >
                                 Cancel
                             </button>
                             <button
                                 onClick={isEditMode ? handleSave : handleAdd}
-                                className="bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md"
+                                className="bg-primary text-primary-foreground hover:bg-primary/90 px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base order-1 sm:order-2"
                             >
                                 {isEditMode ? "Save Changes" : "Add Movie"}
                             </button>
@@ -552,23 +552,23 @@ const Movie: React.FC = () => {
 
             {/* Delete Confirmation Modal */}
             {showDeleteModal && (
-                <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50">
-                    <div className="bg-card border rounded-lg p-6 w-full max-w-md shadow-lg">
-                        <h2 className="text-xl font-bold mb-4">Confirm Delete</h2>
-                        <p className="mb-6 text-muted-foreground">Are you sure you want to delete this movie? This action cannot be undone.</p>
-                        <div className="flex justify-end gap-2">
+                <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                    <div className="bg-card border rounded-lg p-4 sm:p-6 w-full max-w-sm shadow-lg">
+                        <h2 className="text-lg sm:text-xl font-bold mb-4">Confirm Delete</h2>
+                        <p className="mb-6 text-sm sm:text-base text-muted-foreground">Are you sure you want to delete this movie? This action cannot be undone.</p>
+                        <div className="flex flex-col-reverse sm:flex-row justify-end gap-2">
                             <button
                                 onClick={() => {
                                     setShowDeleteModal(false);
                                     setMovieToDelete(null);
                                 }}
-                                className="border border-input bg-background hover:bg-accent hover:text-accent-foreground px-4 py-2 rounded-md"
+                                className="border border-input bg-background hover:bg-accent hover:text-accent-foreground px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base"
                             >
                                 Cancel
                             </button>
                             <button
                                 onClick={confirmDelete}
-                                className="bg-destructive text-destructive-foreground hover:bg-destructive/90 px-4 py-2 rounded-md"
+                                className="bg-destructive text-destructive-foreground hover:bg-destructive/90 px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base"
                             >
                                 Delete
                             </button>
@@ -579,45 +579,45 @@ const Movie: React.FC = () => {
 
             {/* View Modal */}
             {showViewModal && movieToView && (
-                <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50">
-                    <div className="bg-card border rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-lg">
-                        <h2 className="text-xl font-bold mb-4">Movie Details</h2>
+                <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                    <div className="bg-card border rounded-lg p-4 sm:p-6 w-full max-w-xl sm:max-w-2xl max-h-[90vh] overflow-y-auto shadow-lg">
+                        <h2 className="text-lg sm:text-xl font-bold mb-4">Movie Details</h2>
                         <div className="space-y-4">
                             <div className="flex justify-center mb-4">
                                 <img
                                     src={`https://res.cloudinary.com/dvniqmmy3/image/upload/v1761885887/${movieToView.image}`}
                                     alt={movieToView.title}
-                                    className="w-48 h-64 object-cover rounded border shadow-lg"
+                                    className="w-40 h-56 sm:w-48 sm:h-64 object-cover rounded border shadow-lg"
                                 />
                             </div>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
-                                    <p className="text-sm font-medium text-muted-foreground">Title</p>
-                                    <p className="text-lg">{movieToView.title}</p>
+                                    <p className="text-xs sm:text-sm font-medium text-muted-foreground">Title</p>
+                                    <p className="text-base sm:text-lg">{movieToView.title}</p>
                                 </div>
                                 <div>
-                                    <p className="text-sm font-medium text-muted-foreground">Type</p>
-                                    <p className="text-lg">{movieToView.type}</p>
+                                    <p className="text-xs sm:text-sm font-medium text-muted-foreground">Type</p>
+                                    <p className="text-base sm:text-lg">{movieToView.type}</p>
                                 </div>
                                 <div>
-                                    <p className="text-sm font-medium text-muted-foreground">Director</p>
-                                    <p className="text-lg">{movieToView.director}</p>
+                                    <p className="text-xs sm:text-sm font-medium text-muted-foreground">Director</p>
+                                    <p className="text-base sm:text-lg">{movieToView.director}</p>
                                 </div>
                                 <div>
-                                    <p className="text-sm font-medium text-muted-foreground">Budget</p>
-                                    <p className="text-lg">{movieToView.budget}</p>
+                                    <p className="text-xs sm:text-sm font-medium text-muted-foreground">Budget</p>
+                                    <p className="text-base sm:text-lg">{movieToView.budget}</p>
                                 </div>
                                 <div>
-                                    <p className="text-sm font-medium text-muted-foreground">Location</p>
-                                    <p className="text-lg">{movieToView.location}</p>
+                                    <p className="text-xs sm:text-sm font-medium text-muted-foreground">Location</p>
+                                    <p className="text-base sm:text-lg">{movieToView.location}</p>
                                 </div>
                                 <div>
-                                    <p className="text-sm font-medium text-muted-foreground">Duration</p>
-                                    <p className="text-lg">{movieToView.duration} minutes</p>
+                                    <p className="text-xs sm:text-sm font-medium text-muted-foreground">Duration</p>
+                                    <p className="text-base sm:text-lg">{movieToView.duration} minutes</p>
                                 </div>
-                                <div className="col-span-2">
-                                    <p className="text-sm font-medium text-muted-foreground">Time</p>
-                                    <p className="text-lg">{movieToView.time}</p>
+                                <div className="col-span-1 sm:col-span-2">
+                                    <p className="text-xs sm:text-sm font-medium text-muted-foreground">Time</p>
+                                    <p className="text-base sm:text-lg">{movieToView.time}</p>
                                 </div>
                             </div>
                         </div>
@@ -627,7 +627,7 @@ const Movie: React.FC = () => {
                                     setShowViewModal(false);
                                     setMovieToView(null);
                                 }}
-                                className="border border-input bg-background hover:bg-accent hover:text-accent-foreground px-4 py-2 rounded-md"
+                                className="border border-input bg-background hover:bg-accent hover:text-accent-foreground px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base"
                             >
                                 Close
                             </button>

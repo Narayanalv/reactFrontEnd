@@ -12,7 +12,7 @@ function App() {
   const { theme, setTheme } = useTheme()
   return (
     <>
-      <div className='flex absolute top-[3%] right-[3%]'>
+      <div className='flex absolute top-[3%] right-[3%] z-40'>
         <Button variant="outline" className={theme == "light" ? "bg-white" : ""} size="icon" onClick={() => {
           setTheme(theme == "dark" ? "light" : "dark")
           console.log(theme)
@@ -24,17 +24,19 @@ function App() {
       </div>
       {/* {children} */}
       {/* <div><Login logo={logoData} /></div> */}
-      <>
-        <Routes>
-          <Route path={ROUTES.HOME} element={<LoginForm />} />
-        </Routes>
-        <Routes>
-          <Route path={ROUTES.REGISTER} element={<Register />} />
-        </Routes>
-        <Routes>
-          <Route path={ROUTES.MOVIES} element={<Movies />} />
-        </Routes>
-      </>
+      <div className="flex items-center justify-center min-h-screen">
+        <>
+          <Routes>
+            <Route path={ROUTES.HOME} element={<LoginForm />} />
+          </Routes>
+          <Routes>
+            <Route path={ROUTES.REGISTER} element={<Register />} />
+          </Routes>
+          <Routes>
+            <Route path={ROUTES.MOVIES} element={<Movies />} />
+          </Routes>
+        </>
+      </div>
     </>)
 }
 
