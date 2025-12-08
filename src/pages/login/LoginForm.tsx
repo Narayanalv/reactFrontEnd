@@ -50,7 +50,7 @@ function LoginForm() {
     }
 
     return (
-        <div className="w-full max-w-md md:max-w-lg lg:max-w-2xl border rounded-lg p-6 md:p-8 lg:p-20 shadow-[0_0_20px_20px_#aca7a7]">
+        <div className="w-full max-w-md md:max-w-lg lg:max-w-2xl border rounded-lg p-4 sm:p-6 md:p-8 lg:p-20 shadow-[0_0_20px_20px_#aca7a7] mx-4 sm:mx-0">
             <h2 className="text-lg md:text-xl lg:text-2xl font-semibold mb-4 text-center">Login to your account</h2>
             <Formik
                 initialValues={{ email: "", password: "", remember: "" }}

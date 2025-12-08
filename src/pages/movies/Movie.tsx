@@ -275,7 +275,7 @@ const Movie: React.FC = () => {
             accessorKey: "image",
             header: "Image",
             cell: (info) => (
-                <img src={`https://res.cloudinary.com/dvniqmmy3/image/upload/v1761885887/${info.getValue<string>()}`} alt="poster" className="w-12 h-12 object-cover rounded" />
+                <img src={`https://res.cloudinary.com/dvniqmmy3/image/upload/v1761885887/movies/${info.getValue<string>()}`} alt="poster" className="w-12 h-12 object-cover rounded" />
             ),
         },
         {
@@ -431,22 +431,22 @@ const Movie: React.FC = () => {
                         <h2 className="text-lg sm:text-xl font-bold mb-4">
                             {isEditMode ? "Edit Movie" : "Add New Movie"}
                         </h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                             <div>
-                                <label className="block text-sm font-medium mb-1">Title</label>
+                                <label className="block text-xs sm:text-sm font-medium mb-1">Title</label>
                                 <input
                                     placeholder="Enter title"
                                     value={formData.title}
                                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                                    className="border bg-background px-3 py-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-ring"
+                                    className="border bg-background px-2 sm:px-3 py-2 rounded-md w-full text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium mb-1">Type</label>
+                                <label className="block text-xs sm:text-sm font-medium mb-1">Type</label>
                                 <select
                                     value={formData.type}
                                     onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                                    className="border bg-background px-3 py-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-ring"
+                                    className="border bg-background px-2 sm:px-3 py-2 rounded-md w-full text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                                 >
                                     <option value="">Select type</option>
                                     <option value="Movie">Movie</option>
@@ -454,54 +454,54 @@ const Movie: React.FC = () => {
                                 </select>
                             </div>
                             <div>
-                                <label className="block text-sm font-medium mb-1">Director</label>
+                                <label className="block text-xs sm:text-sm font-medium mb-1">Director</label>
                                 <input
                                     placeholder="Enter director"
                                     value={formData.director}
                                     onChange={(e) => setFormData({ ...formData, director: e.target.value })}
-                                    className="border bg-background px-3 py-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-ring"
+                                    className="border bg-background px-2 sm:px-3 py-2 rounded-md w-full text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium mb-1">Budget</label>
+                                <label className="block text-xs sm:text-sm font-medium mb-1">Budget</label>
                                 <input
                                     type="text"
                                     placeholder="Enter budget"
                                     value={formData.budget}
                                     onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                                    className="border bg-background px-3 py-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-ring"
+                                    className="border bg-background px-2 sm:px-3 py-2 rounded-md w-full text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium mb-1">Location</label>
+                                <label className="block text-xs sm:text-sm font-medium mb-1">Location</label>
                                 <input
                                     placeholder="Enter location"
                                     value={formData.location}
                                     onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                                    className="border bg-background px-3 py-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-ring"
+                                    className="border bg-background px-2 sm:px-3 py-2 rounded-md w-full text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium mb-1">Duration (mins)</label>
+                                <label className="block text-xs sm:text-sm font-medium mb-1">Duration (mins)</label>
                                 <input
                                     type="number"
                                     placeholder="Enter duration"
                                     value={formData.duration || ""}
                                     onChange={(e) => setFormData({ ...formData, duration: Number(e.target.value) })}
-                                    className="border bg-background px-3 py-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-ring"
+                                    className="border bg-background px-2 sm:px-3 py-2 rounded-md w-full text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium mb-1">Time</label>
+                                <label className="block text-xs sm:text-sm font-medium mb-1">Time</label>
                                 <input
                                     placeholder="Enter time"
                                     value={formData.time}
                                     onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                                    className="border bg-background px-3 py-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-ring"
+                                    className="border bg-background px-2 sm:px-3 py-2 rounded-md w-full text-sm focus:outline-none focus:ring-2 focus:ring-ring"
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium mb-1">Image</label>
+                                <label className="block text-xs sm:text-sm font-medium mb-1">Image</label>
                                 <input
                                     type="file"
                                     accept="image/*"
@@ -517,15 +517,15 @@ const Movie: React.FC = () => {
                                             reader.readAsDataURL(file);
                                         }
                                     }}
-                                    className="border bg-background px-3 py-2 rounded-md w-full file:mr-4 file:py-1 file:px-2 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
+                                    className="border bg-background px-2 sm:px-3 py-2 rounded-md w-full text-sm file:mr-2 sm:file:mr-4 file:py-1 file:px-1 sm:file:px-2 file:rounded file:border-0 file:text-xs sm:file:text-sm file:font-semibold file:bg-primary file:text-primary-foreground hover:file:bg-primary/90"
                                 />
                                 {formData.image && (
                                     <div className="mt-2">
-                                        <img src={formData.image} alt="Preview" className="w-24 h-24 object-cover rounded border" />
+                                        <img src={formData.image} alt="Preview" className="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded border" />
                                     </div>
                                 )}
                                 {isEditMode && !imageFile && (
-                                    <p className="text-sm text-muted-foreground mt-1">Leave empty to keep current image</p>
+                                    <p className="text-xs sm:text-sm text-muted-foreground mt-1">Leave empty to keep current image</p>
                                 )}
                             </div>
                         </div>
@@ -585,7 +585,7 @@ const Movie: React.FC = () => {
                         <div className="space-y-4">
                             <div className="flex justify-center mb-4">
                                 <img
-                                    src={`https://res.cloudinary.com/dvniqmmy3/image/upload/v1761885887/${movieToView.image}`}
+                                    src={`https://res.cloudinary.com/dvniqmmy3/image/upload/v1761885887/movies/${movieToView.image}`}
                                     alt={movieToView.title}
                                     className="w-40 h-56 sm:w-48 sm:h-64 object-cover rounded border shadow-lg"
                                 />

@@ -24,19 +24,15 @@ function App() {
       </div>
       {/* {children} */}
       {/* <div><Login logo={logoData} /></div> */}
-      <div className="flex items-center justify-center min-h-screen">
-        <>
-          <Routes>
-            <Route path={ROUTES.HOME} element={<LoginForm />} />
-          </Routes>
-          <Routes>
-            <Route path={ROUTES.REGISTER} element={<Register />} />
-          </Routes>
-          <Routes>
-            <Route path={ROUTES.MOVIES} element={<Movies />} />
-          </Routes>
-        </>
-      </div>
+      <Routes>
+        <Route path={ROUTES.HOME} element={<div className="flex items-center justify-center min-h-screen"><LoginForm /></div>} />
+      </Routes>
+      <Routes>
+        <Route path={ROUTES.REGISTER} element={<div className="flex items-center justify-center min-h-screen"><Register /></div>} />
+      </Routes>
+      <Routes>
+        <Route path={ROUTES.MOVIES} element={<Movies />} />
+      </Routes>
     </>)
 }
 
